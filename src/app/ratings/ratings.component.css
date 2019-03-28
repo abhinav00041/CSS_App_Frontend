@@ -1,0 +1,38 @@
+.btn-smt {
+  margin-right: 5px;
+  margin-bottom: 25px;
+}
+.quest {
+  font-size: initial;
+  color: #042863;
+  font-style: oblique;
+}
+
+.rank-groups {
+  margin: 1px;
+  padding: 1px;
+}
+
+.head-tile {
+  color: cornsilk;
+    background-color: #7b5e5e;
+    font-size: x-large;
+    border: 1px solid beige;
+
+}
+.quest-odd {
+  font-size: initial;
+  color: #045f32;
+  font-style: oblique;  
+}
+
+.rating-note {
+  color:salmon;
+}
+.user_proj {
+  margin: 5px;
+  padding: 10px;
+  font-size: initial;
+  color: #045f32;
+  font-style: oblique;
+}
