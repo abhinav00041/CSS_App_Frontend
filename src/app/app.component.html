@@ -12,14 +12,15 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li *ngIf="userLoggedInDetails.isLoggedIn" routerLinkActive="active"><a [routerLink]="['/ratings']">Rating</a></li>
+        <!-- <li *ngIf="userLoggedInDetails.isLoggedIn" routerLinkActive="active"><a [routerLink]="['/ratings']">Rating</a></li> -->
+        <li *ngIf="userLoggedInDetails.isLoggedIn" style="cursor: pointer" outerLinkActive="active"><a  (click) = "onClickRating()" >Rating</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/stackholders']">Stack Holder</a></li>
         <li><a  >Upload Xls</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!userLoggedInDetails.isLoggedIn" ><a [routerLink]="['/']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li *ngIf="userLoggedInDetails.isLoggedIn" ><a (click)="onLogout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li *ngIf="!userLoggedInDetails.isLoggedIn" style="cursor: pointer" ><a [routerLink]="['/']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li *ngIf="userLoggedInDetails.isLoggedIn" style="cursor: pointer"><a (click)="onLogout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>

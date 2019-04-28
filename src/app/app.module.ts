@@ -9,10 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { StackholdersComponent } from './stackholders/stackholders.component';
 import { LoginComponent } from './login/login.component';
+import { EditRatingComponent } from './edit-rating/edit-rating.component';
 
 
 const appRoute: Routes = [
   {path: "", component: LoginComponent},
+  {path: "editrating", component: EditRatingComponent},
   {path: "ratings", component: RatingsComponent},
   {path: "stackholders", component: StackholdersComponent},
   {path: "home", component: HomeComponent}
@@ -24,7 +26,8 @@ const appRoute: Routes = [
     HomeComponent,
     RatingsComponent,
     StackholdersComponent,
-    LoginComponent
+    LoginComponent,
+    EditRatingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+[
+  {
+    "user_id": 33,
+    "email_id": "rahul3@gmail.com",
+    "date_time": "12/07/2019",
+    "user_projects": [ {"name":"ITC3", "value":"1", "status": "submit"}, {"name":"HRC3", "value":"2",   "status": "new"}, {"name":"AdminC3", "value":"3",  "status": "new"}]
+  }
+]
+
+

@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "Abhinav",
+        "nickname": "ABHI",
+        "isActive": true,
+        "userId": 112233,
+        "password": "password",
+        "createdAt": null,
+        "updatedAt": null,
+        "projectStatus": [
+            {
+                "id": 5,
+                "projectName": "lilly Demo",
+                "projectId": 54124,
+                "status": "new",
+                "userId": 112233,
+                "createdAt": "2019-04-01",
+                "updatedAt": "2019-04-01"
+            },
+            {
+                "id": 1,
+                "projectName": "eli lilly GIS",
+                "projectId": 54321,
+                "status": "new",
+                "userId": 112233,
+                "createdAt": "2019-04-01",
+                "updatedAt": "2019-04-26"
+            },
+            {
+                "id": 4,
+                "projectName": "eli lilly Infra",
+                "projectId": 54122,
+                "status": "submited",
+                "userId": 112233,
+                "createdAt": "2019-04-01",
+                "updatedAt": "2019-04-26"
+            }
+        ]
+    }
+]

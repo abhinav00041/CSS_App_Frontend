@@ -5,15 +5,14 @@
           <div class="form-group">
               <label for="email">Mail</label>
               <input
-                type="email"
+                type="number"
                 id="email"
                 class="form-control"
                 ngModel
-                name="email"
-                required
-                email
+                name="username"
+                required                
                 #email="ngModel">
-              <span class="help-block err-msg" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+              <span class="help-block err-msg" *ngIf="!email.valid && email.touched">Please enter a valid User name!</span>
             </div>
         <div class="form-group">
             <label for="password">password</label>

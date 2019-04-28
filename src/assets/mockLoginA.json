@@ -1,0 +1,14 @@
+[
+  {
+    "user_id": 11,
+    "user_name": "Rahul",
+    "email_id": "rahul1@gmail.com",
+    "date_time": "01/01/2019",
+    "user_projects": [ 
+      {"name":"ITALogin", "value":"1", "status": "save"}, 
+      {"name":"HRALogin", "value":"2",   "status": "save"}, 
+      {"name":"AdminALogin", "value":"3",  "status": "new"}
+    ]
+  }
+
+]

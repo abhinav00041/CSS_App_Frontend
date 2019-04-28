@@ -1,23 +1,25 @@
 <div class="container">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form (ngSubmit)="onSubmit('submitted')" #f="ngForm">
   <div class="jumbotron">
     <div class="row" >
         <div class="col-sm-5"><img src="assets/ratings.jpeg" alt="Ratings" style="width:95%;"> </div>
         <div class="col-sm-7"> 
-          <p> Rate us on the scale of 1 to 5, 1 being minimum 5 being maximum </p> 
+          <p> Rate us on the scale of 1 (Strongly Disagree) to 5 (Strongly Agree), 1 being minimum 5 being maximum </p> 
           <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>  
-          <div class="checkbox form-group col-xs-4 user_proj" >
-            <div class="user_proj_radio" *ngFor="let project of genders">
-                <input
-                  ngModel
-                  type="checkbox"
-                  [name]="project"
-                  class="onoffswitch-checkbox"
-                  #projSel="ngModel"
-                  required>
-                {{ project }}
+          <div class="form-group">
+            <label for="options">Options:</label>
+            <div *ngFor="let option of options">
+                <label>
+                    <input type="checkbox"
+                           [name]="'projectId'"
+                           value="{{option.projectId}}"
+                           [(ngModel)]="option.projectId"/>
+                    {{option.projectName}}
+                </label>
             </div>
-          </div>
+         </div>
+         <!-- <span class="help-block error-msg-help" *ngIf="formSubmitMessage">{{formSubmitMessage}}</span>  -->
+         <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Sorry! form is not submitted</span>  -->
           <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Please give Comments for first question.</span> -->
         </div>
     </div>
@@ -288,7 +290,7 @@
            <button
            class="btn btn-primary  btn-smt"
            type="button"
-           (click)="onSubmit('save')"
+           (click)="onSubmit('saved')"
            [disabled]="(ratingValue1.value <= 3 && !ratingComment1.value)
             || (ratingValue2.value <= 3 && !ratingComment2.value)
             || (ratingValue3.value <= 3 && !ratingComment3.value)
