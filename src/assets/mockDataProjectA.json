@@ -1,0 +1,15 @@
+[
+  {
+    "user_id": 11,
+    "email_id": "rahul1@gmail.com",
+    "date_time": "01/01/2019",
+    "user_projects": [
+       {"name":"ITA", "value":"1", "status": "save"},
+       {"name":"HRA", "value":"2",   "status": "save"},
+      {"name":"AdminA", "value":"3",  "status": "new"}
+    ]
+  }
+
+]
+
+

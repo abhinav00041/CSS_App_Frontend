@@ -1,0 +1,16 @@
+[
+  {
+    "user_id": 11,
+    "user_name": "Shinu",
+    "email_id": "rahul1@gmail.com",
+    "date_time": "01/01/2019",
+    "user_projects": [ 
+      {"name":"ITLoginB", "value":"1", "status": "new"}, 
+      {"name":"HRLoginB", "value":"2",   "status": "new"}, 
+      {"name":"LoginAdminB", "value":"3",  "status": "new"}
+    ]
+  }
+
+]
+
+

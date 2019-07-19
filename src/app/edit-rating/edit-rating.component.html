@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onEditRatingForm()" #f="ngForm">
+        <div class="form-group">
+            <p class="edit_rate_head"> Please select a saved project to edit </p>
+          <label for="options">Saved Projects:</label>
+          <div class="radio edit_radio form-group" *ngFor="let savedProj of ratingOptionArray">
+            <label>
+              <input
+                type="radio"
+                name="editProjId"
+                ngModel
+                [value]="savedProj.id"
+                required>
+              {{ savedProj.projectName }}
+            </label>
+          </div>
+
+        </div>
+        <button
+          class="btn btn-primary btn-log"
+          type="submit"
+          [disabled]="!f.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,306 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit('submitted')" #f="ngForm">
+  <div class="jumbotron">
+    <div class="row" >
+        <div class="col-sm-5"><img src="assets/ratings.jpeg" alt="Ratings" style="width:95%;"> </div>
+        <div class="col-sm-7"> 
+          <p> Rate us on the scale of 1 (Strongly Disagree) to 5 (Strongly Agree), 1 being minimum 5 being maximum </p> 
+          <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>  
+          <div class="form-group">
+            <label for="options">Options:</label>
+            <div *ngFor="let option of options">
+                <label>
+                    <input type="checkbox"
+                           [name]="'projectId'"
+                           value="{{option.projectId}}"
+                           [(ngModel)]="option.projectId"/>
+                    {{option.projectName}}
+                </label>
+            </div>
+         </div>
+         <!-- <span class="help-block error-msg-help" *ngIf="formSubmitMessage">{{formSubmitMessage}}</span>  -->
+         <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Sorry! form is not submitted</span>  -->
+          <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Please give Comments for first question.</span> -->
+        </div>
+    </div>
+  </div>
+ 
+    <div class="row form-group">
+        <div class="col-xs-12 visible-sm visible-xs head-tile" >Please give rating for questions shown below:</div>
+      <div class="col-md-5 hidden-sm hidden-xs head-tile" >Question</div>
+      <div class="col-md-2 hidden-sm hidden-xs head-tile" >Ratings</div>
+      <div class="col-md-5 hidden-sm hidden-xs head-tile">Comments</div>
+    </div>
+    <!-- First Question for Rating -->
+    <div class="row que1 form-group rank-groups" >
+      <div class="col-md-5"> <p class="quest"><span class="badge">1</span>The  culture of tcs is good. it follows all rus and regulations .</p> </div>
+      <div class="col-md-3">
+          <select 
+          class="form-control"
+          #ratingValue1="ngModel"
+          [(ngModel)]="selectedRank1"
+          name="ratingValue1">
+          <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+        </select>
+      </div>
+      <div class="col-md-4 form-group">
+          <textarea
+            name="ratingDesc1"
+            #ratingComment1="ngModel"
+            rows="1"
+            class="form-control"
+            [(ngModel)]="ratingDescVal1">
+          </textarea>
+      </div>
+    </div>
+    <span class="help-block error-msg-help" *ngIf="ratingValue1.value  <= 3 && !ratingComment1.value">Please give Comments for first question.</span>
+
+    <!-- Second Question for Rating -->
+    <div class="row que2 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">2</span>We provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue2="ngModel"
+            [(ngModel)]="selectedRank2"
+            name="ratingValue2">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc2"
+              #ratingComment2="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal2">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue2.value  <= 3 && !ratingComment2.value">Please give Comments for second question.</span>
+  
+      
+    <!-- Third Question for Rating -->
+    <div class="row que3 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest"><span class="badge">3</span>We  3333333 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue3="ngModel"
+            [(ngModel)]="selectedRank3"
+            name="ratingValue3">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc3"
+              #ratingComment3="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal3">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue3.value  <= 3 && !ratingComment3.value">Please give Comments for third question.</span>
+  
+    <!-- Forth Question for Rating -->
+    <div class="row que4 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">4</span>We  4444444 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue4="ngModel"
+            [(ngModel)]="selectedRank4"
+            name="ratingValue4">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc4"
+              #ratingComment4="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal4">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue4.value  <= 3 && !ratingComment4.value">Please give Comments for fourth question.</span>
+  
+      <!-- Fifth Question for Rating -->
+    <div class="row que5 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest"><span class="badge">5</span>We 55555 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue5="ngModel"
+            [(ngModel)]="selectedRank5"
+            name="ratingValue5">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc5"
+              #ratingComment5="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal5">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue5.value  <= 3 && !ratingComment5.value">Please give Comments for fifth question.</span>
+  
+      <!-- Sixth Question for Rating -->
+    <div class="row que6 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">6</span>We 666 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue6="ngModel"
+            [(ngModel)]="selectedRank6"
+            name="ratingValue6">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc6"
+              #ratingComment6="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal6">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue6.value  <= 3 && !ratingComment6.value">Please give Comments for sixth question.</span>
+  
+      <!-- Seventh Question for Rating -->
+    <div class="row que7 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest"><span class="badge">7</span>We 777 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue7="ngModel"
+            [(ngModel)]="selectedRank7"
+            name="ratingValue7">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc7"
+              #ratingComment7="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal7">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue7.value  <= 3 && !ratingComment7.value">Please give Comments for Seventh question.</span>
+  
+     <!-- Eighth Question for Rating -->
+     <div class="row que8 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">8</span>We 888 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue8="ngModel"
+            [(ngModel)]="selectedRank8"
+            name="ratingValue8">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc8"
+              #ratingComment8="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal8">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue8.value  <= 3 && !ratingComment8.value">Please give Comments for Eighth question.</span>
+  
+       <!-- Nineth Question for Rating -->
+    <div class="row que9 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest"><span class="badge">9</span>We 999 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue9="ngModel"
+            [(ngModel)]="selectedRank9"
+            name="ratingValue9">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc9"
+              #ratingComment9="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal9">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue9.value  <= 3 && !ratingComment9.value">Please give Comments for Nineth question.</span>
+  
+       <!-- Tenth Question for Rating -->
+    <div class="row que10 form-group rank-groups" >
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">10</span>We 10th provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-3">
+            <select 
+            class="form-control"
+            #ratingValue10="ngModel"
+            [(ngModel)]="selectedRank10"
+            name="ratingValue10">
+            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
+          </select>
+        </div>
+        <div class="col-md-4 form-group">
+            <textarea
+              name="ratingDesc10"
+              #ratingComment10="ngModel"
+              rows="1"
+              class="form-control"
+              [(ngModel)]="ratingDescVal10">
+            </textarea>
+        </div>
+      </div>
+      <span class="help-block error-msg-help" *ngIf="ratingValue10.value  <= 3 && !ratingComment10.value">Please give Comments for Tenth question.</span>
+ 
+    <hr>
+    <button
+          class="btn btn-success btn-smt"
+          type="submit"
+          [disabled]="(ratingValue1.value <= 3 && !ratingComment1.value)
+           || (ratingValue2.value <= 3 && !ratingComment2.value)
+           || (ratingValue3.value <= 3 && !ratingComment3.value)
+           || (ratingValue4.value <= 3 && !ratingComment4.value)
+           || (ratingValue5.value <= 3 && !ratingComment5.value)
+           || (ratingValue6.value <= 3 && !ratingComment6.value)
+           || (ratingValue7.value <= 3 && !ratingComment7.value)
+           || (ratingValue8.value <= 3 && !ratingComment8.value)
+           || (ratingValue9.value <= 3 && !ratingComment9.value)
+           || (ratingValue10.value <= 3 && !ratingComment10.value)">Submit</button>
+        
+           <button
+           class="btn btn-primary  btn-smt"
+           type="button"
+           (click)="onSubmit('saved')"
+           [disabled]="(ratingValue1.value <= 3 && !ratingComment1.value)
+            || (ratingValue2.value <= 3 && !ratingComment2.value)
+            || (ratingValue3.value <= 3 && !ratingComment3.value)
+            || (ratingValue4.value <= 3 && !ratingComment4.value)
+            || (ratingValue5.value <= 3 && !ratingComment5.value)
+            || (ratingValue6.value <= 3 && !ratingComment6.value)
+            || (ratingValue7.value <= 3 && !ratingComment7.value)
+            || (ratingValue8.value <= 3 && !ratingComment8.value)
+            || (ratingValue9.value <= 3 && !ratingComment9.value)
+            || (ratingValue10.value <= 3 && !ratingComment10.value)">Save</button>
+            
+  </form>
+</div>
