@@ -14,9 +14,9 @@
       <ul class="nav navbar-nav">
         <!-- <li *ngIf="userLoggedInDetails.isLoggedIn" routerLinkActive="active"><a [routerLink]="['/ratings']">Rating</a></li> -->
         <li *ngIf="userLoggedInDetails.isLoggedIn" style="cursor: pointer" outerLinkActive="active"><a  (click) = "onClickRating()" >Rating</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/stackholders']">Stack Holder</a></li>
-        <li><a  >Upload Xls</a></li>
+        <!-- <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li> -->
+        <!-- <li routerLinkActive="active"><a [routerLink]="['/stackholders']">Stack Holder</a></li> -->
+        <!-- <li><a  >Upload Xls</a></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!userLoggedInDetails.isLoggedIn" style="cursor: pointer" ><a [routerLink]="['/']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -27,6 +27,6 @@
 </nav>
 
 <router-outlet></router-outlet>
-<footer class="container-fluid text-center">
+<footer class="footer container-fluid text-center">
   <span> &copy; 2019 Tata Consultancy Services Limited. All Rights Reserved.</span>
 </footer>

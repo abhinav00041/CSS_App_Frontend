@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container" style="margin-bottom: 71px;">
   <form (ngSubmit)="onSubmit('submitted')" #f="ngForm">
   <div class="jumbotron">
     <div class="row" >
         <div class="col-sm-5"><img src="assets/ratings.jpeg" alt="Ratings" style="width:95%;"> </div>
         <div class="col-sm-7"> 
-          <p> Rate us on the scale of 1 (Strongly Disagree) to 5 (Strongly Agree), 1 being minimum 5 being maximum </p> 
+          <p> Rate us on the scale of 1 (Strongly Disagree) to 6 (Strongly Agree), 1 being minimum 6 being maximum </p> 
           <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>  
           <div class="form-group">
             <label for="options">Options:</label>
             <div *ngFor="let option of options">
                 <label>
                     <input type="checkbox"
-                           [name]="'projectId'"
+                           name="{{'ProductID_'+option.projectId}}"
                            value="{{option.projectId}}"
                            [(ngModel)]="option.projectId"/>
                     {{option.projectName}}
@@ -33,7 +33,7 @@
     </div>
     <!-- First Question for Rating -->
     <div class="row que1 form-group rank-groups" >
-      <div class="col-md-5"> <p class="quest"><span class="badge">1</span>The  culture of tcs is good. it follows all rus and regulations .</p> </div>
+      <div class="col-md-5"> <p class="quest"><span class="badge">1</span>TCS met contractual obligations on all perspectives of schedule/time, effort/estimates, financial/budget and SLAs .</p> </div>
       <div class="col-md-3">
           <select 
           class="form-control"
@@ -57,7 +57,7 @@
 
     <!-- Second Question for Rating -->
     <div class="row que2 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest-odd"><span class="badge">2</span>We provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">2</span>Deliverables (code, documentation, testing, etc.) met agreed requirements with quality.</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -82,7 +82,7 @@
       
     <!-- Third Question for Rating -->
     <div class="row que3 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest"><span class="badge">3</span>We  3333333 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest"><span class="badge">3</span>TCS team associated with your program possessed sufficient knowledge and understanding of the systems, business areas, technologies and processes .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -106,7 +106,7 @@
   
     <!-- Forth Question for Rating -->
     <div class="row que4 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest-odd"><span class="badge">4</span>We  4444444 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">4</span>All Lilly tools (ProChain, ServiceNow, Quality Center etc )and repositories were kept updated with sufficient and requisite details at all times          .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -130,7 +130,7 @@
   
       <!-- Fifth Question for Rating -->
     <div class="row que5 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest"><span class="badge">5</span>We 55555 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest"><span class="badge">5</span>The TCS team adhered to organizational policies including but not limited to training compliance, information security and business continuity        </p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -154,7 +154,7 @@
   
       <!-- Sixth Question for Rating -->
     <div class="row que6 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest-odd"><span class="badge">6</span>We 666 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">6</span>TCS team communicates (both written and oral forms) and coordinates activities effectively in day to day operations          .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -178,7 +178,8 @@
   
       <!-- Seventh Question for Rating -->
     <div class="row que7 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest"><span class="badge">7</span>We 777 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest"><span class="badge">7</span>TCS reports program status effectively and crisply during WSR, MSR sessions
+          .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -202,7 +203,7 @@
   
      <!-- Eighth Question for Rating -->
      <div class="row que8 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest-odd"><span class="badge">8</span>We 888 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">8</span>TCS team responds and resolves(including timely escalating as applicable) inquiries/ complaints/ issues/ emergencies in an efficient, effective, and timely manner.          .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -226,7 +227,7 @@
   
        <!-- Nineth Question for Rating -->
     <div class="row que9 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest"><span class="badge">9</span>We 999 provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest"><span class="badge">9</span>TCS team proactively offers ideas/ options/ suggestions/innovations improving processes, applications, and/or technology.          .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"
@@ -250,7 +251,7 @@
   
        <!-- Tenth Question for Rating -->
     <div class="row que10 form-group rank-groups" >
-        <div class="col-md-5"> <p class="quest-odd"><span class="badge">10</span>We 10th provide work from home to most of our employee. our development center is best in the world .</p> </div>
+        <div class="col-md-5"> <p class="quest-odd"><span class="badge">10</span>Rate your overall experience with TCS team during the course of the engagement/review period          .</p> </div>
         <div class="col-md-3">
             <select 
             class="form-control"

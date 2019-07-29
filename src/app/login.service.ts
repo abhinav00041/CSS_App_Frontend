@@ -46,7 +46,7 @@ export class LoginService {
     this.authUserDetails.isLoggedIn = false;
     this.authUserDetails.username = "Guest";
     this.authUserDetails.userid = null;
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/login"]);
   }
 
   public getProjectCSSRatings(selectedProjectId): Observable<any> {
@@ -56,6 +56,9 @@ export class LoginService {
   }
   
   postRating(formData) {
+    if(formData.formType === 'saved')
+    return this.http.post('https://customer-demo.herokuapp.com/save_css', formData);
+    else
      return this.http.post('https://customer-demo.herokuapp.com/submit_css', formData);
      // return this.http.post('https://eli-lilly-demo.firebaseio.com/data.json', formData);
   }

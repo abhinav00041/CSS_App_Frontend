@@ -14,6 +14,7 @@ import { EditRatingComponent } from './edit-rating/edit-rating.component';
 
 const appRoute: Routes = [
   {path: "", component: LoginComponent},
+  {path: "login", component: LoginComponent},
   {path: "editrating", component: EditRatingComponent},
   {path: "ratings", component: RatingsComponent},
   {path: "stackholders", component: StackholdersComponent},

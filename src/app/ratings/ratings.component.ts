@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subject, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { LoginService } from "../login.service";
 import { Rating } from '../rating.model';
 import { Router } from '@angular/router';
@@ -17,16 +20,16 @@ export class RatingsComponent implements OnInit {
   options;
   cssFormData;
 
-  selectedRank1 = '4';
-  selectedRank2 = '4';
-  selectedRank3 = '4';
-  selectedRank4 = '4';
-  selectedRank5 = '4';
-  selectedRank6 = '4';
-  selectedRank7 = '4';
-  selectedRank8 = '4';
-  selectedRank9 = '4';
-  selectedRank10 = '4';
+  selectedRank1 = '5';
+  selectedRank2 = '5';
+  selectedRank3 = '5';
+  selectedRank4 = '5';
+  selectedRank5 = '5';
+  selectedRank6 = '5';
+  selectedRank7 = '5';
+  selectedRank8 = '5';
+  selectedRank9 = '5';
+  selectedRank10 = '5';
 
   ratingDescVal1 = '';
   ratingDescVal2 = '';
@@ -42,19 +45,23 @@ export class RatingsComponent implements OnInit {
   rankingArryObject = [
     {rank: "1", meaning: 'Strongly Disagree'},
     {rank: "2", meaning: 'Disagree'},
-    {rank: "3", meaning: 'Somewhat Agree'},
-    {rank: "4", meaning: 'Agree'},
-    {rank: "5", meaning: 'Strongly Agree'}
+    {rank: "3", meaning: 'Somewhat Disagree'},
+    {rank: "4", meaning: 'Somewhat Agree'},
+    {rank: "5", meaning: 'Agree'},
+    {rank: "6", meaning: 'Strongly Agree'}
   ];
 
   ngOnInit() {
     this.loginServ.getUserAssigedProjects().subscribe((data) => {
+      
       this.options = data[0]['projectStatus'];
       if(this.loginServ.userLoggedInDetails().userData.length > 0) {
         this.options = this.loginServ.userLoggedInDetails().userData;
+        this.options  =this.options.filter((el)=>{ return el.status!='submited' }) 
       }
-
+        debugger
       if(this.loginServ.userLoggedInDetails().cssFormData != undefined) {
+
         this.cssFormData = this.loginServ.userLoggedInDetails().cssFormData[0];
 
         this.ratingDescVal1 = this.cssFormData.feedBack.comment1;
@@ -82,12 +89,55 @@ export class RatingsComponent implements OnInit {
     });
   }
 
+
+
   onSubmit(data) {
+
+    console.log("this.signupForm  IS:    ", this.signupForm);
     const smtConfirm = confirm("Are you sure, you want to submit CSS?");
-    let postedData = {
-      formData: this.signupForm.value,
-      formType: data
+    let postedData = [];
+    let calPerValue = [
+      {rank: "1", meaning: 'Strongly Disagree', value:16.67},
+      {rank: "2", meaning: 'Disagree' , value:33.33},
+      {rank: "3", meaning: 'Somewhat Disagree', value:50},
+      {rank: "4", meaning: 'Somewhat Agree', value:66.67},
+      {rank: "5", meaning: 'Agree', value:83.33},
+      {rank: "6", meaning: 'Strongly Agree', value:100}
+  ]
+    for(let key in this.signupForm.value)
+    {
+      let object={};
+      object["formType"] = data
+      if(key.includes("ProductID_"))
+      {
+        object['projectid'] = this.signupForm.value[key],
+        object["userid"]=this.options[0].userId,
+        object["feedback"]= this.signupForm.value
+        let calculatedpersum=0;
+        for(let key1 in this.signupForm.value)
+        {
+          if(key1.includes("ratingValue"))
+          {
+            let calperobject = calPerValue.find((el) =>{ return el.rank ==  this.signupForm.value[key1]});
+            if(calperobject)
+            {
+              calculatedpersum +=calperobject.value;
+            }
+          }
+        }
+        object["CalculatedValue"] =calculatedpersum/10;
+        postedData.push(object);
+      }
     }
+
+
+    //  postedData = {
+    //   formData: this.signupForm.value,
+    //   formType: data,
+    //   projectid:this.signupForm.value.projectid,
+    //   userid:"112233",
+    //  feedback: this.signupForm.value }
+    console.log(postedData);
     if(smtConfirm == true) {
       this.loginServ.postRating(postedData)
         .subscribe(
@@ -95,7 +145,7 @@ export class RatingsComponent implements OnInit {
             alert('Ratings ' + data + " successfully");
             console.log("response is--- ",response);
             this.router.navigate(['home']);        
-          }
+          },(err)=>{  console.log("errer is--- ",err);}
         );
 
        // .catch(err => console.log(err));

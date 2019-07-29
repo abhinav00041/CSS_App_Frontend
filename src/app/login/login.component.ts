@@ -21,12 +21,13 @@ export class LoginComponent implements OnInit {
     this.loginServ.getLoginJSON(this.loginForm.value).subscribe((data) => {
       this.ratingData = data;
       if (data.length > 0) {
+        debugger
         this.loginServ.authUserDetails.username = data[0].name;
         this.loginServ.authUserDetails.password = data[0].password;
         this.loginServ.authUserDetails.isLoggedIn = true ;
         this.loginServ.authUserDetails.userid = data[0].userId ;
         this.loginServ.authUserDetails.userData = data[0]['projectStatus'];
-        this.router.navigate(['/home']);
+        this.router.navigate(['/ratings']);
       }
     });
   }

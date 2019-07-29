@@ -2,3 +2,11 @@ a.loginuser {
     padding-top: 18px;
     display: inline-block;
 }
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px;
+  }
