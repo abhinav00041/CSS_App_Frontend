@@ -3,7 +3,7 @@
   <div class="jumbotron">
     <div class="row" >
         <div class="col-sm-5"><img src="assets/ratings.jpeg" alt="Ratings" style="width:95%;"> </div>
-        <div class="col-sm-7"> 
+        <div class="col-sm-7" *ngIf="show"> 
           <p> Rate us on the scale of 1 (Strongly Disagree) to 6 (Strongly Agree), 1 being minimum 6 being maximum </p> 
           <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>  
           <div class="form-group">
@@ -22,9 +22,13 @@
          <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Sorry! form is not submitted</span>  -->
           <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Please give Comments for first question.</span> -->
         </div>
+        <div class="col-sm-7" *ngIf="show1"> 
+          <p>You have already submitted feedback form for this quarter.</p> 
+          <!-- <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>   -->
+        </div>
     </div>
   </div>
- 
+ <div *ngIf="show">
     <div class="row form-group">
         <div class="col-xs-12 visible-sm visible-xs head-tile" >Please give rating for questions shown below:</div>
       <div class="col-md-5 hidden-sm hidden-xs head-tile" >Question</div>
@@ -302,6 +306,6 @@
             || (ratingValue8.value <= 3 && !ratingComment8.value)
             || (ratingValue9.value <= 3 && !ratingComment9.value)
             || (ratingValue10.value <= 3 && !ratingComment10.value)">Save</button>
-            
+    </div>           
   </form>
 </div>

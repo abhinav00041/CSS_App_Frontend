@@ -19,6 +19,11 @@ export class RatingsComponent implements OnInit {
 
   options;
   cssFormData;
+  public show:boolean = true;
+  public show1:boolean = false;
+  public UserId:string = '';
+  public UserName:string ='';
+  public ProductList = [];
 
   selectedRank1 = '5';
   selectedRank2 = '5';
@@ -52,14 +57,25 @@ export class RatingsComponent implements OnInit {
   ];
 
   ngOnInit() {
+
     this.loginServ.getUserAssigedProjects().subscribe((data) => {
       
       this.options = data[0]['projectStatus'];
       if(this.loginServ.userLoggedInDetails().userData.length > 0) {
         this.options = this.loginServ.userLoggedInDetails().userData;
+        this.UserName = this.loginServ.userLoggedInDetails().username;
+        this.UserId = this.loginServ.userLoggedInDetails().userid.toString();
+        this.ProductList = this.loginServ.userLoggedInDetails().userData;
         this.options  =this.options.filter((el)=>{ return el.status!='submited' }) 
+        if(this.options.length==0)
+        {
+          this.show=false;
+          this.show1=true;
+        }
+      }else{
+        this.show=false;
+        this.show1=true;
       }
-        debugger
       if(this.loginServ.userLoggedInDetails().cssFormData != undefined) {
 
         this.cssFormData = this.loginServ.userLoggedInDetails().cssFormData[0];
@@ -107,12 +123,14 @@ export class RatingsComponent implements OnInit {
     for(let key in this.signupForm.value)
     {
       let object={};
-      object["formType"] = data
+      object["formType"] = data;
+      object["userid"]=this.UserId;
+      object["UserName"]=this.UserName;
       if(key.includes("ProductID_"))
       {
-        object['projectid'] = this.signupForm.value[key],
-        object["userid"]=this.options[0].userId,
-        object["feedback"]= this.signupForm.value
+        object['projectid'] = this.signupForm.value[key];
+        object['projectname']=  this.ProductList.find((el)=>{return el.projectId==  this.signupForm.value[key] }) ?this.ProductList.find((el)=>{return el.projectId==  this.signupForm.value[key] }).projectName :'';
+        object["feedback"]= this.signupForm.value;
         let calculatedpersum=0;
         for(let key1 in this.signupForm.value)
         {
@@ -125,7 +143,7 @@ export class RatingsComponent implements OnInit {
             }
           }
         }
-        object["CalculatedValue"] =calculatedpersum/10;
+        object["CalculatedValue"] =(calculatedpersum/10).toFixed(2);
         postedData.push(object);
       }
     }
