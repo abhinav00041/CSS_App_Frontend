@@ -14,6 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient, private router: Router) {}
 
   myData: Rating[];
+  FeedbackProject={};
   authUserDetails : {isLoggedIn: boolean, username: string, password?: string, userid: number, userData?: any[], cssFormData?: any[] } = {isLoggedIn: false, username: 'Guest', userid:null};
 
   public getUserAssigedProjects(): Observable<any> {
@@ -24,19 +25,18 @@ export class LoginService {
 
   public getLoginJSON(loginFormData): Observable<any> {
      return this.http.post('https://customer-demo.herokuapp.com/login', loginFormData)
-   // return this.http.get('./assets/mockDataProjectAL.json');  //mock API  data: 112233, pasword for local
-
-      //   .pipe(
-      //     retry(3),
-      //     catchError(err => {
-      //     console.log('Login Error: ', err);
-      //     return of(null);
-      //     })
-      // ); 
   }
 
   getSelectedData() {
     return this.myData;
+  }
+  getFeedbackProjectData() {
+    return this.FeedbackProject;
+  }
+  setFeedbackProjectData(object) {
+    
+     this.FeedbackProject =object;
+     return true;
   }
   userLoggedInDetails() {
     return this.authUserDetails;
@@ -50,13 +50,15 @@ export class LoginService {
   }
 
   public getProjectCSSRatings(selectedProjectId): Observable<any> {
+    debugger
     var getCSSUrl = "https://customer-demo.herokuapp.com/get_css?userid=" + this.authUserDetails.userid + "&projectid=" + selectedProjectId; 
     return this.http.get<Rating[]>(getCSSUrl);  // TODO: uncomment for Production
    // return this.http.get<Rating[]>("./assets/mockCSSFormDataL.json");  // TODO: Comment for Production
+   //https://customer-demo.herokuapp.com/
   }
   
   postRating(formData) {
-    if(formData.formType === 'saved')
+    if(formData[0].formType === 'saved')
     return this.http.post('https://customer-demo.herokuapp.com/save_css', formData);
     else
      return this.http.post('https://customer-demo.herokuapp.com/submit_css', formData);

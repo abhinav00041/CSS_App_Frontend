@@ -2,16 +2,16 @@
 
   
 <div class="container-fluid text-center"> 
-    <h2>TCS Feedback Portal</h2>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
+  
+    <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
   
-      <!-- Wrapper for slides -->
+
       <div class="carousel-inner">
   
         <div class="item active">
@@ -39,8 +39,7 @@
         </div>
     
       </div>
-  
-      <!-- Left and right controls -->
+
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
         <span class="sr-only">Previous</span>
@@ -49,36 +48,80 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div>   
-  <div class="row content">
+    </div>    -->
+  <div class="row content" style="margin-top: -18px;">
     <div class="col-sm-2 sidenav">
       <p><a href="https://www.tcs.com/">TCS</a></p>
       <p><a href="https://www.tata.com/">TATA Group</a></p>
       <p><a href="https://twitter.com/TataCompanies">Twitter</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h3 class="dash-heading" >The Gen-Y Management Breakthrough</h3>
-      <p>Try as she might, Ginny* could not get herself to concentrate on the new project she had just been assigned to. With one eye fixed on her fast-approaching review date, she nervously took a stab at the task at hand. That Ginny, a young trainee at the Initial Learning Program (ILP) Innovation Lab at TCS Thiruvananthapuram, was nervous about her work was clear to her seniors. But there was definitely something else also at play: what could it be?</p>
-      <hr>
-      <h3 class="dash-heading">Empowerment by Design</h3>
-      <p>Riyadh, one of the most populous cities in the Kingdom of Saudi Arabia (KSA), displays an interesting facet in its demographic dividend. Almost 60% of the city’s graduates are women, and yet, until very recently, they were conventionally employed in public sector and educational organizations. To provide these talented and highly skilled women new avenues for growth and development, Tata Consultancy Services Limited (TCS) in 2013 set about conceptualizing the world’s first ‘all-women’ Business Process Services (BPS) center in Riyadh.</p>
-      <hr>
-      <h3 class="dash-heading">Celebrating Cultural Diversity</h3>
-      <p>At the turn of the millennium, Tata Consultancy Services (TCS) decided to consolidate its presence in Europe with a brand new operational center. In true TCS style, the result was one massive organizational breakthrough. The Global Delivery Center (GDC) established in Hungary back then today features more than 2,000 associates belonging to nearly 80 nationalities, together providing support in 33 languages to clients across 186 countries.</p>
-      <hr>
-      <h3 class="dash-heading">Building Digital Spine of Oil & Gas Enterprises for Competitive Advantage</h3>
-      <p>Digital spine helps upstream, midstream, and downstream firms improve operating efficiency and safety across asset base.</p>
-      <hr>
-      <h3 class="dash-heading">Performance Management in AI- Powered Chatbots</h3>
-      <p>Building a digital spine helps oil and gas organizations better utilize their asset base and improve efficiencies.  The I-B-A-V-C framework based on Business 4.0TM technologies  – intelligent, agile, automated, and on the cloud – helps operationalize the digital spine. </p>
-      <hr>
-      <h3 class="dash-heading">Business Aand Technology Insight</h3>
-      <p>At the turn of the millennium, Tata Consultancy Services (TCS) decided to consolidate its presence in Europe with a brand new operational center. In true TCS style, the result was one massive organizational breakthrough. The Global Delivery Center (GDC) established in Hungary back then today features more than 2,000 associates belonging to nearly 80 nationalities, together providing support in 33 languages to clients across 186 countries.</p>
-    
-    </div>
+        <img src="assets/TCSCSS.png" alt="Los Angeles" style="width:100%;">
+        <hr>
+      <h3 class="dash-heading" >Dear {{UserName}}</h3>
+      <p>This survey has been sent to you to get your 'level of satisfaction' & 'feedback' on our current engagement(s) with you. 
+          This is in line with our continuous endeavor to understand your expectations better and accordingly improve our processes to up the level of our services in the current and future assignments. Please spare 10 minutes of your time to help us serve you better.</p>
+          <hr>
+          <div id="color1" class="colorcode" style="width:100%;"> 
+              <table width="100%">
+              <tbody><tr><td style="font-size: 10pt;" colspan="3">Survey is designed to get your 
+                feedback on different service perspectives of :</td> </tr>
+              <tr style="font-size: 10pt;height:10px;" colspan="3"><td></td></tr>
+              <tr><td width="15px" bgcolor="rgb(73, 85, 90)"></td><td width="5px"></td><td style="font-size: 10pt"> 
+                Delivery Quality (4 Questions) </td></tr>
+              <tr><td width="15px" bgcolor="rgb(1, 148, 148)"></td><td width="5px"></td><td style="font-size: 10pt">
+                Confidentiality (1 Question)</td></tr>
+              <tr><td width="15px" bgcolor="rgb(1, 108, 226)"></td><td width="5px"></td><td style="font-size: 10pt">
+                Communication (3 Questions)</td></tr>
+              <tr><td width="15px" bgcolor="rgb(78, 78, 11)"></td><td width="5px"></td><td style="font-size: 10pt">
+                Proactiveness/Going Beyond (1 Question)</td></tr>
+              <tr><td width="15px" bgcolor="rgb(185, 71, 110)"></td><td width="5px"></td><td style="font-size: 10pt">
+                Overall Experience (1 Question)</td></tr>
+              </tbody></table>
+              </div>
+
+              <p> </p>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Project Name</th>
+                  <th scope="col">Feedback Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let option of options; index as i" (click)="onGoToPage(option)">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td><a href="javascript: void(0)" (click)="onGoToPage(option)"> {{ option.projectName }}</a></td>
+                  <td><a href="javascript: void(0)" (click)="onGoToPage(option)"> {{option.status}}</a></td>
+                  <td ><a href="javascript: void(0)" (click)="onGoToPage(option)"> {{option.Action}}</a> </td>
+                </tr>
+                </tbody>
+              </table>  
+
+              <div style="padding-bottom: 5px"><div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt; text-decoration: underline"></div>
+<div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt; text-decoration: underline">
+	<font size="2" face="Tahoma"><b><u>Please Note :</u></b></font></div><br>
+<div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt">
+	1. You can drag or click anywhere on the slider to register your response 
+	for a particular question.</div>
+<div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt">
+	2. In case your response is 'Somewhat Disagree', 'Disagree' or 'Strongly 
+	Disagree', we request you to provide your valuable comments.</div>
+<div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt">
+	&nbsp;</div>
+<div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt">
+	In case you face any issues in accessing or submitting the CSS Form, please 
+	write an e-mail to us <a href="mailto:tcs_css_support@lists.lilly.com">TCS 
+	Customer Satisfaction Team</a></div>
+<div align="left" style="margin-top: 0in; padding-right: 0in; margin-bottom: 0pt; font-size: 10pt; text-decoration: underline"><br></div></div>
+ 
+
+</div>
     <div class="col-sm-2 sidenav">
-        <h2>Accordion Example</h2>
-            <p><strong>Note:</strong>This site is meant for<strong>CSS: Customer Satisfactio Survay</strong> Please provide your valuable feeback on  clicking rating Tab</p>
+        <!-- <h2>Accordion Example</h2> -->
+            <p><strong>Note:</strong><strong>Rate us on the scale of 1 (Strongly Disagree) to 6 (Strongly Agree), 1 being minimum 6 being maximum  </strong> Please provide your valuable feeback</p>
             <div class="panel-group" id="accordion">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -87,8 +130,12 @@
                   </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
-                    <img src="assets/1star.jpeg" alt="Los Angeles" style="width:100%;">
-                  <div class="panel-body"> <b>Strongly Disagree: </b>This is the lowest rating among 5 . This rating is equivalent to ONE star.</div>
+                    <ngb-rating [(rate)]="select1"  max="6" >
+                        <ng-template let-fill="fill" let-index="index">
+                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                        </ng-template>
+                      </ngb-rating>
+                  <div class="panel-body"> <b>Strongly Disagree: </b>This is the lowest rating among 6 . This rating is equivalent to ONE star.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -98,8 +145,12 @@
                   </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
-                  <img src="assets/2star.jpeg" alt="Los Angeles" style="width:100%;">
-                  <div class="panel-body"> <b>Disagree: </b>This is the second lowest rating among 5 . This rating is equivalent to TWO star.</div>
+                    <ngb-rating [(rate)]="select2"  max="6" >
+                        <ng-template let-fill="fill" let-index="index">
+                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                        </ng-template>
+                      </ngb-rating>
+                  <div class="panel-body"> <b>Disagree: </b>This is the second lowest rating among 6 . This rating is equivalent to TWO star.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -109,8 +160,12 @@
                   </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
-                    <img src="assets/3star.jpeg" alt="Los Angeles" style="width:100%;">
-                    <div class="panel-body"> <b>Disagree: </b>This is the Mid level rating among 5 . This rating is equivalent to THREE star.</div>
+                    <ngb-rating [(rate)]="select3"  max="6" >
+                        <ng-template let-fill="fill" let-index="index">
+                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                        </ng-template>
+                      </ngb-rating>
+                    <div class="panel-body"> <b>Somewhat Disagree: </b>This is the Mid level rating among 6 . This rating is equivalent to THREE star.</div>
                 </div>
               </div>
               <div class="panel panel-default">
@@ -120,8 +175,12 @@
                     </h4>
                   </div>
                   <div id="collapse4" class="panel-collapse collapse">
-                      <img src="assets/4star.jpeg" alt="Los Angeles" style="width:100%;">
-                      <div class="panel-body"> <b>Disagree: </b>This is the second highest rating among 5 . This rating is equivalent to FOUR star.</div>
+                      <ngb-rating [(rate)]="select4"  max="6" >
+                          <ng-template let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                          </ng-template>
+                        </ngb-rating>
+                      <div class="panel-body"> <b>Somewhat Agree: </b>This is the Third highest rating among 6 . This rating is equivalent to FOUR star.</div>
                   </div>
                 </div>
                 <div class="panel panel-default">
@@ -131,10 +190,29 @@
                       </h4>
                     </div>
                     <div id="collapse5" class="panel-collapse collapse">
-                        <img src="assets/5star.jpeg" alt="Los Angeles" style="width:100%;">
-                        <div class="panel-body"> <b>Disagree: </b>This is the Top rating among 5 . This rating is equivalent to FIVE star.</div>
+                        <ngb-rating [(rate)]="select5"  max="6" >
+                            <ng-template let-fill="fill" let-index="index">
+                              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                            </ng-template>
+                          </ngb-rating>
+                        <div class="panel-body"> <b>Agree: </b>This is the Second highest rating among 6. This rating is equivalent to five star.</div>
                     </div>
                   </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Star Rating 6</a>
+                        </h4>
+                      </div>
+                      <div id="collapse6" class="panel-collapse collapse">
+                          <ngb-rating [(rate)]="select6"  max="6" >
+                              <ng-template let-fill="fill" let-index="index">
+                                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                              </ng-template>
+                            </ngb-rating>
+                          <div class="panel-body"> <b>Agree: </b>This is the Top rating among 6. This rating is equivalent to six star.</div>
+                      </div>
+                    </div>
             </div>
     </div>
   </div>

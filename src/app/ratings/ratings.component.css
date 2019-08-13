@@ -36,3 +36,16 @@
   color: #045f32;
   font-style: oblique;
 }
+.star {
+  font-size: 3.8rem;
+  color: #b0c4de;
+}
+.filled {
+  color: #1e90ff;
+}
+.bad {
+  color: #deb0b0;
+}
+.filled.bad {
+  color: #ff1e1e;
+}

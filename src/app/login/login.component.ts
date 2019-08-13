@@ -27,9 +27,12 @@ export class LoginComponent implements OnInit {
         this.loginServ.authUserDetails.isLoggedIn = true ;
         this.loginServ.authUserDetails.userid = data[0].userId ;
         this.loginServ.authUserDetails.userData = data[0]['projectStatus'];
-        this.router.navigate(['/ratings']);
+        this.router.navigate(['/home']);
       }
-    });
+    },(err)=>{ 
+      debugger
+      alert(""+err.error.data); 
+      console.log("errer is--- ",err);});
   }
 
 }

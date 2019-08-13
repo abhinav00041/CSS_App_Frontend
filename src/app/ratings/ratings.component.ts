@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { LoginService } from "../login.service";
 import { Rating } from '../rating.model';
 import { Router } from '@angular/router';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 @Component({
   selector: 'app-ratings',
@@ -18,14 +19,16 @@ export class RatingsComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm;
 
   options;
+  object1={};
   cssFormData;
   public show:boolean = true;
   public show1:boolean = false;
   public UserId:string = '';
   public UserName:string ='';
   public ProductList = [];
-
-  selectedRank1 = '5';
+  public productid;
+  currentRate = 5;
+  selectedRank1 = "5";
   selectedRank2 = '5';
   selectedRank3 = '5';
   selectedRank4 = '5';
@@ -35,6 +38,16 @@ export class RatingsComponent implements OnInit {
   selectedRank8 = '5';
   selectedRank9 = '5';
   selectedRank10 = '5';
+  ratingValue1 = "5";
+  ratingValue2 = '5';
+  ratingValue3 = '5';
+  ratingValue4 = '5';
+  ratingValue5 = '5';
+  ratingValue6 = '5';
+  ratingValue7 = '5';
+  ratingValue8 = '5';
+  ratingValue9 = '5';
+  ratingValue10 = '5';
 
   ratingDescVal1 = '';
   ratingDescVal2 = '';
@@ -66,49 +79,59 @@ export class RatingsComponent implements OnInit {
         this.UserName = this.loginServ.userLoggedInDetails().username;
         this.UserId = this.loginServ.userLoggedInDetails().userid.toString();
         this.ProductList = this.loginServ.userLoggedInDetails().userData;
-        this.options  =this.options.filter((el)=>{ return el.status!='submited' }) 
-        if(this.options.length==0)
-        {
-          this.show=false;
-          this.show1=true;
-        }
+      
       }else{
         this.show=false;
         this.show1=true;
       }
-      if(this.loginServ.userLoggedInDetails().cssFormData != undefined) {
+      if(this.loginServ.getFeedbackProjectData()!= undefined)
+      {
+        this.options =[this.loginServ.getFeedbackProjectData()];
+        this.productid=this.options[0]["projectId"];
+        this.loginServ.getProjectCSSRatings(this.productid).subscribe((data) => {
+          this.loginServ.userLoggedInDetails().cssFormData=[data[data.length -1]]
 
-        this.cssFormData = this.loginServ.userLoggedInDetails().cssFormData[0];
+          if(this.loginServ.userLoggedInDetails().cssFormData != undefined) {
+          
+            this.cssFormData = this.loginServ.userLoggedInDetails().cssFormData[0];
+            this.ratingDescVal1 = this.cssFormData.feedBack.ratingDesc1;
+            this.ratingDescVal2 = this.cssFormData.feedBack.ratingDesc2;
+            this.ratingDescVal3 = this.cssFormData.feedBack.ratingDesc3;
+            this.ratingDescVal4 = this.cssFormData.feedBack.ratingDesc4;
+            this.ratingDescVal5 = this.cssFormData.feedBack.ratingDesc5;
+            this.ratingDescVal6 = this.cssFormData.feedBack.ratingDesc6;
+            this.ratingDescVal7 = this.cssFormData.feedBack.ratingDesc7;
+            this.ratingDescVal8 = this.cssFormData.feedBack.ratingDesc8;
+            this.ratingDescVal9 = this.cssFormData.feedBack.ratingDesc9;
+            this.ratingDescVal10 = this.cssFormData.feedBack.ratingDesc10;
+    
+            this.selectedRank1 = this.cssFormData.feedBack.ratingValue1 + "";
+            this.selectedRank2 = this.cssFormData.feedBack.ratingValue2 + "";
+            this.selectedRank3 = this.cssFormData.feedBack.ratingValue3 + "";
+            this.selectedRank4 = this.cssFormData.feedBack.ratingValue4 + "";
+            this.selectedRank5 = this.cssFormData.feedBack.ratingValue5 + "";
+            this.selectedRank6 = this.cssFormData.feedBack.ratingValue6 + "";
+            this.selectedRank7 = this.cssFormData.feedBack.ratingValue7 + "";
+            this.selectedRank8 = this.cssFormData.feedBack.ratingValue8 + ""
+            this.selectedRank9 = this.cssFormData.feedBack.ratingValue9 + "";
+            this.selectedRank10 = this.cssFormData.feedBack.ratingValue10 + "";
+          }
 
-        this.ratingDescVal1 = this.cssFormData.feedBack.comment1;
-        this.ratingDescVal2 = this.cssFormData.feedBack.comment2;
-        this.ratingDescVal3 = this.cssFormData.feedBack.comment3;
-        this.ratingDescVal4 = this.cssFormData.feedBack.comment4;
-        this.ratingDescVal5 = this.cssFormData.feedBack.comment5;
-        this.ratingDescVal6 = this.cssFormData.feedBack.comment6;
-        this.ratingDescVal7 = this.cssFormData.feedBack.comment7;
-        this.ratingDescVal8 = this.cssFormData.feedBack.comment8;
-        this.ratingDescVal9 = this.cssFormData.feedBack.comment9;
-        this.ratingDescVal10 = this.cssFormData.feedBack.comment10;
+      })
+      }
 
-        this.selectedRank1 = this.cssFormData.feedBack.rating1 + "";
-        this.selectedRank2 = this.cssFormData.feedBack.rating2 + "";
-        this.selectedRank3 = this.cssFormData.feedBack.rating3 + "";
-        this.selectedRank4 = this.cssFormData.feedBack.rating4 + "";
-        this.selectedRank5 = this.cssFormData.feedBack.rating5 + "";
-        this.selectedRank6 = this.cssFormData.feedBack.rating6 + "";
-        this.selectedRank7 = this.cssFormData.feedBack.rating7 + "";
-        this.selectedRank8 = this.cssFormData.feedBack.rating8 + ""
-        this.selectedRank9 = this.cssFormData.feedBack.rating9 + "";
-        this.selectedRank10 = this.cssFormData.feedBack.rating10 + "";
-      }      
+ 
+     
+            
     });
+
+   
   }
 
 
 
   onSubmit(data) {
-
+      debugger
     console.log("this.signupForm  IS:    ", this.signupForm);
     const smtConfirm = confirm("Are you sure, you want to submit CSS?");
     let postedData = [];
@@ -162,7 +185,17 @@ export class RatingsComponent implements OnInit {
           (response) => {
             alert('Ratings ' + data + " successfully");
             console.log("response is--- ",response);
-            this.router.navigate(['home']);        
+            this.loginServ.getUserAssigedProjects().subscribe((data) => {
+              if (data.length > 0) {
+                debugger
+                this.loginServ.authUserDetails.username = data[0].name;
+                this.loginServ.authUserDetails.password = data[0].password;
+                this.loginServ.authUserDetails.isLoggedIn = true ;
+                this.loginServ.authUserDetails.userid = data[0].userId ;
+                this.loginServ.authUserDetails.userData = data[0]['projectStatus'];
+                this.router.navigate(['home']);   
+              }
+            },(err)=>{ alert("errer is--- "+err); console.log("errer is--- ",err);});
           },(err)=>{  console.log("errer is--- ",err);}
         );
 

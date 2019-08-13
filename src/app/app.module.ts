@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,8 +11,7 @@ import { RatingsComponent } from './ratings/ratings.component';
 import { StackholdersComponent } from './stackholders/stackholders.component';
 import { LoginComponent } from './login/login.component';
 import { EditRatingComponent } from './edit-rating/edit-rating.component';
-
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 const appRoute: Routes = [
   {path: "", component: LoginComponent},
   {path: "login", component: LoginComponent},
@@ -34,7 +34,7 @@ const appRoute: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoute)
+    RouterModule.forRoot(appRoute),NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

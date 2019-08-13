@@ -1,8 +1,7 @@
 <div class="container" style="margin-bottom: 71px;">
   <form (ngSubmit)="onSubmit('submitted')" #f="ngForm">
-  <div class="jumbotron">
+
     <div class="row" >
-        <div class="col-sm-5"><img src="assets/ratings.jpeg" alt="Ratings" style="width:95%;"> </div>
         <div class="col-sm-7" *ngIf="show"> 
           <p> Rate us on the scale of 1 (Strongly Disagree) to 6 (Strongly Agree), 1 being minimum 6 being maximum </p> 
           <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>  
@@ -18,17 +17,15 @@
                 </label>
             </div>
          </div>
-         <!-- <span class="help-block error-msg-help" *ngIf="formSubmitMessage">{{formSubmitMessage}}</span>  -->
-         <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Sorry! form is not submitted</span>  -->
-          <!-- <span class="help-block error-msg-help" *ngIf="!projSel.value">Please give Comments for first question.</span> -->
         </div>
         <div class="col-sm-7" *ngIf="show1"> 
           <p>You have already submitted feedback form for this quarter.</p> 
-          <!-- <h4 class="rating-note">Note: Please put your <b> Comments </b> for raiting less than 3 and below.</h4>   -->
         </div>
-    </div>
+  
   </div>
- <div *ngIf="show">
+
+
+<div *ngIf="show">
     <div class="row form-group">
         <div class="col-xs-12 visible-sm visible-xs head-tile" >Please give rating for questions shown below:</div>
       <div class="col-md-5 hidden-sm hidden-xs head-tile" >Question</div>
@@ -39,17 +36,15 @@
     <div class="row que1 form-group rank-groups" >
       <div class="col-md-5"> <p class="quest"><span class="badge">1</span>TCS met contractual obligations on all perspectives of schedule/time, effort/estimates, financial/budget and SLAs .</p> </div>
       <div class="col-md-3">
-          <select 
-          class="form-control"
-          #ratingValue1="ngModel"
-          [(ngModel)]="selectedRank1"
-          name="ratingValue1">
-          <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-        </select>
+        <ngb-rating [(rate)]="selectedRank1"  max="6"  name="ratingValue1"  [(ngModel)]="ratingValue1" style="display: inline-flex!important;">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
       </div>
       <div class="col-md-4 form-group">
           <textarea
-            name="ratingDesc1"
+            name="ratingDesc1"  
             #ratingComment1="ngModel"
             rows="1"
             class="form-control"
@@ -57,19 +52,17 @@
           </textarea>
       </div>
     </div>
-    <span class="help-block error-msg-help" *ngIf="ratingValue1.value  <= 3 && !ratingComment1.value">Please give Comments for first question.</span>
+    <span class="help-block error-msg-help" *ngIf="selectedRank1  <= 3 && !ratingComment1.value">Please give Comments for first question.</span>
 
     <!-- Second Question for Rating -->
     <div class="row que2 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest-odd"><span class="badge">2</span>Deliverables (code, documentation, testing, etc.) met agreed requirements with quality.</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue2="ngModel"
-            [(ngModel)]="selectedRank2"
-            name="ratingValue2">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank2"  max="6"  name="ratingValue2"  [(ngModel)]="ratingValue2" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -81,20 +74,18 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue2.value  <= 3 && !ratingComment2.value">Please give Comments for second question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank2 <= 3 && !ratingComment2.value">Please give Comments for second question.</span>
   
       
     <!-- Third Question for Rating -->
     <div class="row que3 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest"><span class="badge">3</span>TCS team associated with your program possessed sufficient knowledge and understanding of the systems, business areas, technologies and processes .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue3="ngModel"
-            [(ngModel)]="selectedRank3"
-            name="ratingValue3">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank3"  max="6" name="ratingValue3"  [(ngModel)]="ratingValue3" style="display: inline-flex!important;" >
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -106,19 +97,17 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue3.value  <= 3 && !ratingComment3.value">Please give Comments for third question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank3  <= 3 && !ratingComment3.value">Please give Comments for third question.</span>
   
     <!-- Forth Question for Rating -->
     <div class="row que4 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest-odd"><span class="badge">4</span>All Lilly tools (ProChain, ServiceNow, Quality Center etc )and repositories were kept updated with sufficient and requisite details at all times          .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue4="ngModel"
-            [(ngModel)]="selectedRank4"
-            name="ratingValue4">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank4"  max="6" name="ratingValue4"  [(ngModel)]="ratingValue4" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -130,19 +119,17 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue4.value  <= 3 && !ratingComment4.value">Please give Comments for fourth question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank4  <= 3 && !ratingComment4.value">Please give Comments for fourth question.</span>
   
       <!-- Fifth Question for Rating -->
     <div class="row que5 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest"><span class="badge">5</span>The TCS team adhered to organizational policies including but not limited to training compliance, information security and business continuity        </p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue5="ngModel"
-            [(ngModel)]="selectedRank5"
-            name="ratingValue5">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank5"  max="6" name="ratingValue5"  [(ngModel)]="ratingValue5" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -154,19 +141,17 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue5.value  <= 3 && !ratingComment5.value">Please give Comments for fifth question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank5  <= 3 && !ratingComment5.value">Please give Comments for fifth question.</span>
   
       <!-- Sixth Question for Rating -->
     <div class="row que6 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest-odd"><span class="badge">6</span>TCS team communicates (both written and oral forms) and coordinates activities effectively in day to day operations          .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue6="ngModel"
-            [(ngModel)]="selectedRank6"
-            name="ratingValue6">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank6"  max="6" name="ratingValue6"  [(ngModel)]="ratingValue6" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -178,20 +163,18 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue6.value  <= 3 && !ratingComment6.value">Please give Comments for sixth question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank6  <= 3 && !ratingComment6.value">Please give Comments for sixth question.</span>
   
       <!-- Seventh Question for Rating -->
     <div class="row que7 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest"><span class="badge">7</span>TCS reports program status effectively and crisply during WSR, MSR sessions
           .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue7="ngModel"
-            [(ngModel)]="selectedRank7"
-            name="ratingValue7">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank7"  max="6" name="ratingValue7"  [(ngModel)]="ratingValue7" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -203,19 +186,17 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue7.value  <= 3 && !ratingComment7.value">Please give Comments for Seventh question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank7  <= 3 && !ratingComment7.value">Please give Comments for Seventh question.</span>
   
      <!-- Eighth Question for Rating -->
      <div class="row que8 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest-odd"><span class="badge">8</span>TCS team responds and resolves(including timely escalating as applicable) inquiries/ complaints/ issues/ emergencies in an efficient, effective, and timely manner.          .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue8="ngModel"
-            [(ngModel)]="selectedRank8"
-            name="ratingValue8">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank8"  max="6"  name="ratingValue8"  [(ngModel)]="ratingValue8" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -227,19 +208,17 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue8.value  <= 3 && !ratingComment8.value">Please give Comments for Eighth question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank8  <= 3 && !ratingComment8.value">Please give Comments for Eighth question.</span>
   
        <!-- Nineth Question for Rating -->
     <div class="row que9 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest"><span class="badge">9</span>TCS team proactively offers ideas/ options/ suggestions/innovations improving processes, applications, and/or technology.          .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue9="ngModel"
-            [(ngModel)]="selectedRank9"
-            name="ratingValue9">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank9"  max="6" name="ratingValue9"  [(ngModel)]="ratingValue9" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -251,19 +230,17 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue9.value  <= 3 && !ratingComment9.value">Please give Comments for Nineth question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank9  <= 3 && !ratingComment9.value">Please give Comments for Nineth question.</span>
   
        <!-- Tenth Question for Rating -->
     <div class="row que10 form-group rank-groups" >
         <div class="col-md-5"> <p class="quest-odd"><span class="badge">10</span>Rate your overall experience with TCS team during the course of the engagement/review period          .</p> </div>
         <div class="col-md-3">
-            <select 
-            class="form-control"
-            #ratingValue10="ngModel"
-            [(ngModel)]="selectedRank10"
-            name="ratingValue10">
-            <option *ngFor="let obj of rankingArryObject" [ngValue]="obj.rank"> {{obj.meaning}}</option>
-          </select>
+          <ngb-rating [(rate)]="selectedRank10"  max="6" name="ratingValue10"  [(ngModel)]="ratingValue10" style="display: inline-flex!important;">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+            </ng-template>
+          </ngb-rating>
         </div>
         <div class="col-md-4 form-group">
             <textarea
@@ -275,37 +252,37 @@
             </textarea>
         </div>
       </div>
-      <span class="help-block error-msg-help" *ngIf="ratingValue10.value  <= 3 && !ratingComment10.value">Please give Comments for Tenth question.</span>
+      <span class="help-block error-msg-help" *ngIf="selectedRank10  <= 3 && !ratingComment10.value">Please give Comments for Tenth question.</span>
  
     <hr>
     <button
           class="btn btn-success btn-smt"
           type="submit"
-          [disabled]="(ratingValue1.value <= 3 && !ratingComment1.value)
-           || (ratingValue2.value <= 3 && !ratingComment2.value)
-           || (ratingValue3.value <= 3 && !ratingComment3.value)
-           || (ratingValue4.value <= 3 && !ratingComment4.value)
-           || (ratingValue5.value <= 3 && !ratingComment5.value)
-           || (ratingValue6.value <= 3 && !ratingComment6.value)
-           || (ratingValue7.value <= 3 && !ratingComment7.value)
-           || (ratingValue8.value <= 3 && !ratingComment8.value)
-           || (ratingValue9.value <= 3 && !ratingComment9.value)
-           || (ratingValue10.value <= 3 && !ratingComment10.value)">Submit</button>
+          [disabled]="(selectedRank1 <= 3 && !ratingComment1.value)
+           || (selectedRank2 <= 3 && !ratingComment2.value)
+           || (selectedRank3 <= 3 && !ratingComment3.value)
+           || (selectedRank4<= 3 && !ratingComment4.value)
+           || (selectedRank5 <= 3 && !ratingComment5.value)
+           || (selectedRank6 <= 3 && !ratingComment6.value)
+           || (selectedRank7 <= 3 && !ratingComment7.value)
+           || (selectedRank8 <= 3 && !ratingComment8.value)
+           || (selectedRank9<= 3 && !ratingComment9.value)
+           || (selectedRank10 <= 3 && !ratingComment10.value)">Submit</button>
         
            <button
            class="btn btn-primary  btn-smt"
            type="button"
            (click)="onSubmit('saved')"
-           [disabled]="(ratingValue1.value <= 3 && !ratingComment1.value)
-            || (ratingValue2.value <= 3 && !ratingComment2.value)
-            || (ratingValue3.value <= 3 && !ratingComment3.value)
-            || (ratingValue4.value <= 3 && !ratingComment4.value)
-            || (ratingValue5.value <= 3 && !ratingComment5.value)
-            || (ratingValue6.value <= 3 && !ratingComment6.value)
-            || (ratingValue7.value <= 3 && !ratingComment7.value)
-            || (ratingValue8.value <= 3 && !ratingComment8.value)
-            || (ratingValue9.value <= 3 && !ratingComment9.value)
-            || (ratingValue10.value <= 3 && !ratingComment10.value)">Save</button>
+           [disabled]="(selectedRank1 <= 3 && !ratingComment1.value)
+            || (selectedRank2 <= 3 && !ratingComment2.value)
+            || (selectedRank3 <= 3 && !ratingComment3.value)
+            || (selectedRank4 <= 3 && !ratingComment4.value)
+            || (selectedRank5 <= 3 && !ratingComment5.value)
+            || (selectedRank6 <= 3 && !ratingComment6.value)
+            || (selectedRank7 <= 3 && !ratingComment7.value)
+            || (selectedRank8 <= 3 && !ratingComment8.value)
+            || (selectedRank9<= 3 && !ratingComment9.value)
+            || (selectedRank10 <= 3 && !ratingComment10.value)">Save</button>
     </div>           
   </form>
 </div>
